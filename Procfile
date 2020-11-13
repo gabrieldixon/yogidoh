@@ -1,0 +1,1 @@
+web: gunicorn yogidoh.wsgi --log-file -
