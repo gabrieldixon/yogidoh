@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'order',
+    'storages',
+
 
 ]
 
@@ -129,3 +131,14 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/images/'
 
 MEDIA_ROOT = BASE_DIR / "static/images"
+
+
+# S3 Bucket
+AWS_ACCESS_KEY_ID = 'AKIAVIIJ4G6FZLPNM3VJ '
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'yogidoh-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
