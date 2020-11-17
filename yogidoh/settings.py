@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ms!47e3_e4kz&%jf_-m)7ex0a2y&qu8j$$2n70(=u_66_myhln'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['yogidoh.herokuapp.com', '127.0.0.1']
 
@@ -121,11 +121,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+import os
+
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATIC_URL = '/static/'
+
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / 'static'
 ]
 
 MEDIA_URL = '/images/'
@@ -133,12 +135,15 @@ MEDIA_URL = '/images/'
 MEDIA_ROOT = BASE_DIR / "static/images"
 
 
-# S3 Bucket
-AWS_ACCESS_KEY_ID = 'AKIAVIIJ4G6FZLPNM3VJ '
-AWS_SECRET_ACCESS_KEY = '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'
+# # S3 Bucket
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'yogidoh-bucket'
 
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
