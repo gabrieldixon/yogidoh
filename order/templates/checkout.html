@@ -62,11 +62,17 @@
         </div>
     </div>
 </div>
-<script src="https://www.paypal.com/sdk/js?client-id=Aci4ySsW_GbbNlVZRY4mu4VY-aGtfUquOThPWYLonjdFhj8b20mRAOt3is6PCSnQgJX_ovQlcsfuq9kz&currency=USD&disable-funding=credit"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AYOW19JkZBE307xqEC7_r7oXANhrU8VC7uYdg9HwW38mLa8L9kCbky9RGI4gAixT0jsbBkyd-EhY2eyz&currency=USD&disable-funding=credit"></script>
 <script>
     var total = '{{order.get_cart_total}}'
 
     paypal.Buttons({
+
+        style:{
+            color:'black',
+            shape:'pill',
+        },
+
         createOrder: function(data, actions) {
             return actions.order.create({
                 purchase_units: [{
